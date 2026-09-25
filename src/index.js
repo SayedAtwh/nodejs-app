@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-  res.send(`
+    res.send(`
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -719,7 +719,11 @@ app.get("/health", (req, res) => {
 });
 
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`🚀 CloudPulse running on port ${PORT}`);
-    console.log(`🌐 http://localhost:${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, "0.0.0.0", () => {
+        console.log(`🚀 CloudPulse running on port ${PORT}`);
+        console.log(`🌐 http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
